@@ -5,7 +5,7 @@ import multer from "multer";
 import path from "path";
 import dotenv from "dotenv";
 
-dotenv.config();  // ✅ Load .env variables
+dotenv.config();  
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,10 +24,11 @@ app.use(express.json());
 app.use('/schoolImages', express.static(path.join(process.cwd(), 'schoolImages')));
 
 const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    port: process.env.MYSQL_PORT, // It's good practice to include the port
     waitForConnections: true,
     connectionLimit: 10,
 });
